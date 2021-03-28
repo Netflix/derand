@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DerandTest {
@@ -40,4 +41,14 @@ public class DerandTest {
         assertEquals("", Derand.clean("3y29842ysjhfs"));
         assertEquals("hello hello", Derand.clean("y837sc42zsd hello sdyd8f7h34 hello 3y29842ysjhfs"));
     }
+
+
+    @Test public void testClassify() throws TranslateException, IOException {
+        assertArrayEquals(new boolean[]{false, true, false}, Derand.classify("hello 3y29842ysjhfs world"));
+        assertArrayEquals(new boolean[]{}, Derand.classify(""));
+        assertArrayEquals(new boolean[]{}, Derand.classify(null));
+        assertArrayEquals(new boolean[]{true}, Derand.classify("3y29842ysjhfs"));
+        assertArrayEquals(new boolean[]{true, false, true, false, true}, Derand.classify("y837sc42zsd hello sdyd8f7h34 hello 3y29842ysjhfs"));
+    }
+
 }

@@ -142,6 +142,13 @@ public class Derand {
 
     }
 
+    public static boolean[] classify(String text) throws TranslateException, IOException {
+
+        if (isEmpty(text)) return new boolean[]{};
+
+        return predictRandomnessPerWord(text.split(" "));
+    }
+
     private static boolean isEmpty(String text) {
         return text == null || text.isEmpty() || text.trim().isEmpty();
     }
