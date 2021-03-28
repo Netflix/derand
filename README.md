@@ -14,6 +14,7 @@ Derand.clean("hello 3y29842ysjhfs world")
 
 Derand uses pre-trained character level Convolutional Neural Network that operates on character embeddings.
 Derand neural net has slightly over 1000 params. 
+Derand performs very well on CPUs and with default params achieves sub-millisecond inference on strings.
 
 The model of the network is in lightly optimized ONNX format that you can further optimize for your specific CPU. 
 
@@ -26,7 +27,8 @@ Each predictor is initialized in a ThreadLocal container.
 
 
 ### What are dependencies?
-This package depends on [Deep Java Library](https://djl.ai/)
+This package depends on [Deep Java Library](https://djl.ai/), 
+DJL's PyTorch and ONNX engines wrappers. 
 
 ### How the model looks?
 ![Model](./derand_model.png)
@@ -40,8 +42,9 @@ Input to the model is an array of character ids based on the character position 
 Model outputs softmax probability of a word being random or non-random.
 
 
-#### Tricks on using in Production
+#### Performance optimizations
 Follow DJL inference optimization guide for PyTorch and ONNX. 
+
 Usually, having 
 ```shell
 export OMP_NUM_THREADS=1
