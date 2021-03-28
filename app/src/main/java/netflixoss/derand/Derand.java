@@ -30,8 +30,8 @@ import java.util.*;
 
 public class Derand {
 
-    private static final String MODEL_URL = "https://randomly-public-us-east-1.s3.amazonaws.com/randomly_light_cnn.onnx.zip";
-    private static final String MODEL_NAME = "randomly_light_cnn.onnx";
+    private static final String MODEL_URL = "https://randomly-public-us-east-1.s3.amazonaws.com/derand.onnx.zip";
+    private static final String MODEL_NAME = "derand.onnx";
     private static final String RND = "<rnd>";
 
 
@@ -143,6 +143,9 @@ public class Derand {
     }
 
     public static boolean[] classify(String text) throws TranslateException, IOException {
+        /**
+         * return boolean array that represents each word in a string, split by whitespace, as either random (true) or non-random (false) element
+         */
 
         if (isEmpty(text)) return new boolean[]{};
 

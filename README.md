@@ -41,6 +41,14 @@ Input to the model is an array of character ids based on the character position 
 ### What is output of the model?
 Model outputs softmax probability of a word being random or non-random.
 
+### How is model trained and what is its performance?
+Model is trained on about a million of examples in total, with %20 of the data in test set.
+On the test data model achieves
+```shell
+acc: 0.9951
+precision: 0.9951 
+recall: 0.9951
+```
 
 #### Performance optimizations
 Follow DJL inference optimization guide for PyTorch and ONNX. 
