@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        maven {
+            url = 'https://dl.bintray.com/nebula/gradle-plugins'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.netflix.nebula:gradle-netflixoss-project-plugin:9.1.0"
+    }
+}
+
+allprojects {
+    group = 'com.netflix.netflixoss.test'
+    apply plugin: 'nebula.netflixoss'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+
+    dependencies {
+        constraints {
+            // Define dependency versions as constraints
+            implementation 'org.apache.commons:commons-text:1.9'
+        }
+
+        // Use JUnit Jupiter API for testing.
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+
+        // Use JUnit Jupiter Engine for testing.
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    tasks.named('test') {
+        // Use junit platform for unit tests.
+        useJUnitPlatform()
+    }
+
+}
+
+gradleEnterprise {
+    buildScan {
+        publishAlways()
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
+}

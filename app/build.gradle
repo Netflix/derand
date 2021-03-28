@@ -1,0 +1,19 @@
+apply plugin: 'application'
+
+dependencies {
+
+    implementation 'ai.djl.pytorch:pytorch-engine:0.10.0'
+    implementation 'ai.djl.pytorch:pytorch-native-auto:1.7.1'
+
+    implementation ('ai.djl.onnxruntime:onnxruntime-engine:0.10.0'){
+        exclude group: "com.microsoft.onnxruntime", module: "onnxruntime"
+    }
+    implementation "com.microsoft.onnxruntime:onnxruntime:1.7.0"
+
+
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'netflixoss.derand.App'
+}
