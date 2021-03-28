@@ -101,9 +101,7 @@ public class Derand {
 
     public static String tokenize(String text) throws TranslateException, IOException {
 
-        if(text == null || text.isEmpty()){
-            return "";
-        }
+        if (isEmpty(text)) return "";
 
         StringJoiner joiner = new StringJoiner(" ");
 
@@ -112,6 +110,26 @@ public class Derand {
         }
 
         return joiner.toString();
+    }
+
+    public static String clean(String text) throws TranslateException, IOException {
+
+        if (isEmpty(text)) return "";
+
+        StringJoiner joiner = new StringJoiner(" ");
+
+        for(String tokenizedWord :tokenizeWords(text.split(" "))){
+            if(!tokenizedWord.equals(RND)){
+                joiner.add(tokenizedWord);
+            }
+        }
+
+        return joiner.toString();
+
+    }
+
+    private static boolean isEmpty(String text) {
+        return text == null || text.isEmpty() || text.trim().isEmpty();
     }
 
 }
