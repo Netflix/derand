@@ -61,3 +61,9 @@ achieves the highest throughput in a multi-threaded inference environment, such 
 * Java Executors
 
 
+### Slack community
+Working on open-source AI tools in observability space? Join our slack community
+[Open Source Observability Intelligence](https://join.slack.com/t/opensourceobs-fp54349/shared_invite/zt-mwnaslja-0mxk3dyyqB~WUKZ3ive7Dg)
+
+### License
+This project is licensed under the [Apache-2.0 License](./LICENSE).
