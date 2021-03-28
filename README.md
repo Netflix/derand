@@ -45,11 +45,11 @@ Model outputs softmax probability of a word being random or non-random.
 #### Performance optimizations
 Follow DJL inference optimization guide for PyTorch and ONNX. 
 
-Usually, having 
+Usually, having ENV variable
 ```shell
 export OMP_NUM_THREADS=1
 ```
-+ 
++ JVM params
 ```shell
 -Dai.djl.pytorch.num_interop_threads=1
 -Dai.djl.pytorch.num_threads=1
