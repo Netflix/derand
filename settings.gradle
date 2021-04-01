@@ -11,5 +11,5 @@ plugins {
 }
 
 rootProject.name = 'netflixoss-derand'
-include('app')
+include('derand')
 
