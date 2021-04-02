@@ -10,6 +10,22 @@ Derand.clean("hello 3y29842ysjhfs world")
 // "hello world
 ```
 
+
+### Maven
+
+```shell
+<dependency>
+  <groupId>com.netflix.netflixoss.derand</groupId>
+  <artifactId>derand</artifactId>
+  <version>0.0.2</version>
+</dependency>
+```
+
+### Gradle
+```shell
+implementation 'com.netflix.netflixoss.derand:derand:0.0.2'
+```
+
 ### How it works?
 
 Derand uses pre-trained character level Convolutional Neural Network that operates on character embeddings.
