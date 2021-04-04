@@ -85,6 +85,61 @@ achieves the highest throughput in a multi-threaded inference environment, such 
 * Java Executors
 
 
+### Examples of processing
+As Derand uses neural network and softmax probabilities to classify words, it is doing best effort tokenization. Below are some examples:
+
+
+The raw log examples are taken from Hadoop logs hosted on [Loghub](https://github.com/logpai/loghub)
+
+---
+> Shilin He, Jieming Zhu, Pinjia He, Michael R. Lyu. [Loghub: A Large Collection of System Log Datasets towards Automated Log Analytics.](https://arxiv.org/abs/2008.06448) Arxiv, 2020.
+---
+
+The Loghub Hadoop dataset was used just to provide the below examples:
+
+```shell
+-----------
+Before: org.apache.hadoop.mapreduce.v2.app.MRAppMaster: Created MRAppMaster for application appattempt_1445144423722_0020_000001
+After: org.apache.hadoop.mapreduce.v2.app.MRAppMaster: Created MRAppMaster for application <rnd>
+-----------
+
+-----------
+Before: org.apache.hadoop.yarn.event.AsyncDispatcher: Registering class org.apache.hadoop.mapreduce.v2.app.commit.CommitterEventType for class org.apache.hadoop.mapreduce.v2.app.commit.CommitterEventHandler
+After: org.apache.hadoop.yarn.event.AsyncDispatcher: Registering class org.apache.hadoop.mapreduce.v2.app.commit.CommitterEventType for class org.apache.hadoop.mapreduce.v2.app.commit.CommitterEventHandler
+-----------
+
+-----------
+Before: org.apache.hadoop.http.HttpServer2: Jetty bound to port 62267
+After: <rnd> Jetty bound to port 62267 # org.apache.hadoop.http.HttpServer2 considered to be random looking
+-----------
+
+-----------
+Before: Started HttpServer2$SelectChannelConnectorWithSafeStartup@0.0.0.0:62267
+After: Started <rnd>
+-----------
+
+-----------
+Before: [IPC Server handler 13 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: JVM with ID : jvm_1445144423722_0020_m_000002 asked for a task
+After: [IPC Server handler 13 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: JVM with ID : <rnd> asked for a task
+-----------
+```
+
+Sometimes Derand tokenizes slightly non-random words, examples:
+
+```shell
+-----------
+Before: [RMCommunicator Allocator] org.apache.hadoop.mapreduce.v2.app.rm.RMContainerAllocator: Recalculating schedule, headroom=<memory:0, vCores:-27>
+After: [RMCommunicator Allocator] org.apache.hadoop.mapreduce.v2.app.rm.RMContainerAllocator: Recalculating schedule, headroom=<memory:0, <rnd> # Word "vCores:-27>" was considered random
+-----------
+
+-----------
+[RMCommunicator Allocator] org.apache.hadoop.ipc.Client: Retrying connect to server: msra-sa-41:8030. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[RMCommunicator Allocator] org.apache.hadoop.ipc.Client: Retrying connect to server: msra-sa-41:8030. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, <rnd> MILLISECONDS) # "sleepTime=1000" tokenized as <rnd>
+-----------
+```
+
+
+
 ### Slack community
 Working on open-source AI tools in observability space? Join our slack community
 [Open Source Observability Intelligence](https://join.slack.com/t/opensourceobs-fp54349/shared_invite/zt-mwnaslja-0mxk3dyyqB~WUKZ3ive7Dg)
